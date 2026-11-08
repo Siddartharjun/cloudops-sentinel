@@ -66,8 +66,26 @@ else
 fi
 
 echo ""
-echo "MEMORY USAGE"
-free -h
+echo "========== MEMORY HEALTH =========="
+
+mem_total=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
+mem_available=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
+
+mem_used=$((mem_total - mem_available))
+mem_usage=$((100 * mem_used / mem_total))
+
+echo "Total Memory: $((mem_total / 1024)) MiB"
+echo "Available Memory: $((mem_available / 1024)) MiB"
+echo "Memory Usage: ${mem_usage}%"
+
+if [ "$mem_usage" -ge 90 ]; then
+    echo "Status: CRITICAL"
+elif [ "$mem_usage" -ge 80 ]; then
+    echo "Status: WARNING"
+else
+    echo "Status: OK"
+fi
+
 
 echo ""
 echo "SYSTEM LOAD"
