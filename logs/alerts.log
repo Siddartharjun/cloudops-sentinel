@@ -1,0 +1,3 @@
+2026-11-08 15:51:01 | WARNING | Test alert from CloudOps Sentinel
+2026-11-08 15:55:18 | WARNING | Root disk usage reached 85%
+2026-11-08 15:55:18 | CRITICAL | Root disk usage reached 95%
