@@ -143,3 +143,35 @@ This is a personal learning and portfolio project. It is not connected to any em
 ---
 
 **Built as a hands-on CloudOps and AIops learning project.**
+
+## Phase 2 & 3: Monitoring, Observability and Alerting
+
+### Monitoring Stack
+- **Prometheus:** Collects infrastructure metrics.
+- **Node Exporter:** Exposes Linux system metrics.
+- **Grafana:** Visualizes infrastructure health through dashboards.
+
+### Infrastructure Metrics
+- CPU utilization
+- Memory utilization
+- Root disk utilization
+
+### Alert Rules
+| Alert | Threshold |
+|---|---:|
+| CPU Usage High | Above 70% |
+| Memory Usage High | Above 80% |
+| Root Disk Usage High | Above 80% |
+
+All alert rules are evaluated every minute with a one-minute pending period.
+
+### Notification Integration
+- Grafana Webhook Contact Point
+- Python HTTP webhook receiver
+- Incoming notifications recorded in `logs/webhook.log`
+
+### Validation Completed
+- Successfully tested Grafana webhook delivery.
+- Successfully triggered the root disk alert using a temporary 50% threshold.
+- Verified alert firing and recovery.
+- Restored the original disk threshold to 80%.
